@@ -18,192 +18,315 @@ A beautiful, feature-rich video downloader supporting multiple platforms with st
 - 📟 **Basic Console**: Simple text-based fallback
 
 ### 🔧 **Advanced Features**
+- 🏆 **Best quality default** - Always downloads highest available quality
 - 🎯 Multiple quality options (Best, 1080p, 720p, 480p, Worst)
 - 🎵 Audio-only downloads (MP3 extraction)
 - 📁 Smart file organization by platform and content type
 - 🔄 Automatic retry with exponential backoff
-- 🛡️  SSL certificate error handling
-- 📊 Real-time download progress with ETA
+- 🛡️  SSL certificate error handling with auto-bypass
+- 📊 Real-time download progress with ETA and file tracking
 - 🎪 Interactive configuration with visual feedback
+- 🚀 Enhanced error messages with helpful solutions
+- 📸 Instagram-specific anti-bot detection handling
 
 ## 🚀 Installation
 
-### **Quick Install**
+### **Prerequisites**
 ```bash
-git clone https://github.com/yourusername/media-downloader.git
-cd media-downloader
-pip install -e ".[full]"
+# Ensure you have Python 3.8+ installed
+python --version
+
+# Basic dependencies
+pip install yt-dlp
 ```
 
-### **Install Options**
+### **Clone and Setup**
 ```bash
-# Basic installation
-pip install -e .
+# Clone the repository
+git clone https://github.com/yourusername/media-downloader.git
+cd media-downloader
 
-# Enhanced UI (recommended)
-pip install -e ".[enhanced]"
+# Install basic version
+pip install yt-dlp
 
-# Full-screen TUI interface
-pip install -e ".[tui]"
+# For enhanced UI experience (recommended)
+pip install rich art textual
+```
 
-# Everything included
-pip install -e ".[full]"
+### **Verify Installation**
+```bash
+# Test basic functionality
+python -m media_downloader --help
 
-# Development
-pip install -e ".[dev]"
+# Check available UI features
+python -m media_downloader --show-features
 ```
 
 ## 🎮 Usage
 
-### **🖥️  Full-Screen TUI Mode (Recommended)**
+### **🚀 Quick Start**
 ```bash
-media-downloader --tui
+# Interactive mode (recommended)
+python -m media_downloader -i
+
+# Direct download
+python -m media_downloader "https://www.youtube.com/watch?v=example"
 ```
-Launch a beautiful full-screen terminal interface with mouse support, real-time progress, and interactive controls.
 
-### **✨ Enhanced Interactive Mode**
+### **⚡ Common Commands**
 ```bash
-media-downloader --enhanced --interactive
-```
-Enjoy animations, ASCII art, and rich visual feedback in your terminal.
+# Interactive mode with best available UI
+python -m media_downloader -i
 
-### **⚡ Quick Downloads**
-```bash
-# Basic download
-media-downloader "https://www.youtube.com/watch?v=example"
+# Download with specific quality
+python -m media_downloader -q best "URL"
 
-# High quality
-media-downloader -q best "https://www.youtube.com/watch?v=example"
-
-# Audio only
-media-downloader -a "https://www.youtube.com/watch?v=example"
+# Audio only download
+python -m media_downloader -a "URL"
 
 # Custom output directory
-media-downloader -o ~/Downloads/Music "https://www.youtube.com/watch?v=example"
+python -m media_downloader -o ~/Downloads "URL"
+
+# Show help
+python -m media_downloader --help
 ```
 
-### **🎛️  UI Mode Selection**
+### **🎛️ Interface Options**
 ```bash
-media-downloader --tui           # Full-screen interface
-media-downloader --enhanced -i   # Enhanced Rich UI
-media-downloader --basic -i      # Simple console
-media-downloader -i              # Auto-detect best UI
+python -m media_downloader -i              # Auto-detect best UI
+python -m media_downloader --tui           # Full-screen interface
+python -m media_downloader --enhanced -i   # Enhanced Rich UI with animations
+python -m media_downloader --basic -i      # Simple console interface
 ```
 
 ### **📋 Information Commands**
 ```bash
-media-downloader --list-platforms  # Show supported platforms
-media-downloader --show-features   # Display available UI features
-media-downloader --help           # Full help
+python -m media_downloader --list-platforms  # Show supported platforms
+python -m media_downloader --show-features   # Display available UI features
 ```
+
+### **🎯 Quality Options**
+- `best` - Highest available quality (default)
+- `1080p` - Full HD maximum
+- `720p` - HD maximum
+- `480p` - Standard definition maximum
+- `worst` - Smallest file size
+
+### **💡 Pro Tips**
+- Use `-i` for interactive mode with the best available interface
+- The program auto-detects and uses the most advanced UI available
+- Install `pip install rich art textual` for the full graphical experience
 
 ## 🎨 Interface Showcase
 
-### **🖥️  Textual TUI**
-- Full-screen terminal interface
+### **🖥️ Textual TUI** (Full-Screen Mode)
+- Complete terminal takeover with beautiful layouts
 - Mouse and keyboard navigation
-- Real-time progress monitoring
-- Interactive platform detection
-- Drag-and-drop URL support (where supported)
+- Real-time progress monitoring with multiple download tracking
+- Interactive platform detection and configuration
+- Live logging and error display
 
-### **✨ Enhanced Rich UI**
-- Animated ASCII art welcome screen
-- Color-coded platform detection
-- Interactive quality selection tables
-- Progress bars with sparkle animations
-- Celebration animations on success
+### **✨ Enhanced Rich UI** (Default when available)
+- Animated ASCII art welcome screen with platform showcase
+- Color-coded platform detection with emojis
+- Interactive quality selection tables with file size estimates
+- Animated progress bars with sparkle effects
+- Celebration animations on successful downloads
+- Enhanced error messages with visual styling and helpful solutions
 
-### **🎬 Standard Rich UI**  
-- Clean console layout
-- Color-coded messages
-- Progress indicators
-- Formatted tables and panels
+### **🎬 Standard Rich UI**
+- Clean console layout with colors and formatting
+- Organized tables and panels for information display
+- Progress indicators with ETA
+- Color-coded success/error messages
+
+### **📟 Basic Console** (Fallback)
+- Simple text-based interface that works everywhere
+- No external dependencies required
+- Full functionality with basic formatting
 
 ## 🔧 Configuration
 
-### **Quality Presets**
-- `best`: Highest available quality
-- `1080p`: Full HD (1920x1080) maximum
-- `720p`: HD (1280x720) maximum  
-- `480p`: Standard definition (854x480) maximum
-- `worst`: Smallest file size
+### **File Organization**
+Downloads are automatically organized by platform and content type:
+```
+downloads/
+├── [YOUTUBE] Video Title.mp4
+├── Playlist Name/
+│   ├── 01 - First Video.mp4
+│   └── 02 - Second Video.mp4
+├── Channel Name/
+│   ├── 2024-01-15 - Recent Video.mp4
+│   └── 2024-01-10 - Older Video.mp4
+├── [INSTAGRAM] username - post_title.mp4
+├── [TIKTOK] creator - video_title.mp4
+└── [TWITTER] user - tweet_content.mp4
+```
 
-### **Output Templates**
-Files are automatically organized:
-- **Videos**: `downloads/[PLATFORM] Title.ext`
-- **Playlists**: `downloads/Playlist Name/## - Video Title.ext`
-- **Channels**: `downloads/Channel Name/Date - Video Title.ext`
+### **Quality Settings**
+The program defaults to "best" quality but offers granular control:
+- **Best**: Automatically selects highest available quality and format
+- **1080p**: Caps at Full HD resolution with best audio
+- **720p**: Caps at HD resolution for smaller files
+- **480p**: Standard definition for quick downloads
+- **Worst**: Smallest file size available
+
+### **Audio Extraction**
+When using audio-only mode (`-a`):
+- Extracts to MP3 format at 192kbps quality
+- Preserves original metadata when available
+- Organized in the same folder structure
 
 ## 🛠️ Development
 
-### **Architecture**
+### **Project Structure**
 ```
 media_downloader/
-├── models/          # Data structures
-├── core/           # Business logic  
-├── platforms/      # Platform implementations
-├── ui/            # User interfaces
-│   ├── basic_ui.py      # Simple console
-│   ├── rich_ui.py       # Standard Rich
+├── __init__.py              # Package initialization
+├── models/                  # Data structures and configurations
+│   ├── enums.py            # ContentType, QualityPreset enums
+│   ├── config.py           # DownloadConfig dataclass
+│   └── platform_info.py    # PlatformInfo model
+├── core/                   # Core business logic
+│   ├── base.py            # Abstract Platform class
+│   ├── downloader.py      # Main VideoDownloader class
+│   └── progress.py        # Download progress handling
+├── platforms/             # Platform-specific implementations
+│   ├── youtube.py         # YouTube support with playlist/channel handling
+│   ├── vimeo.py          # Vimeo high-quality downloads
+│   ├── twitter.py        # Twitter/X video extraction
+│   ├── tiktok.py         # TikTok short-form content
+│   └── instagram.py      # Instagram with anti-bot measures
+├── ui/                   # User interface components
+│   ├── base.py          # Abstract UIManager class
+│   ├── basic_ui.py      # Simple console interface
+│   ├── rich_ui.py       # Standard Rich interface
 │   ├── enhanced_ui.py   # Enhanced Rich with animations
 │   └── textual_ui.py    # Full-screen TUI
-├── utils/         # Utilities
-└── cli.py         # Command-line interface
+├── utils/               # Utility functions
+│   └── logging.py       # Logging configuration
+├── cli.py              # Command-line interface and argument parsing
+└── __main__.py         # Entry point for module execution
 ```
 
 ### **Adding New Platforms**
+Create a new platform by extending the base Platform class:
+
 ```python
 from ..core.base import Platform
-from ..models import PlatformInfo, ContentType
+from ..models import PlatformInfo, ContentType, DownloadConfig
 
 class NewPlatform(Platform):
     def __init__(self):
         info = PlatformInfo(
             name="NewPlatform",
-            hosts=["newplatform.com"], 
-            patterns=[r"newplatform\.com/watch"]
+            hosts=["newplatform.com", "www.newplatform.com"],
+            patterns=[r"newplatform\.com/watch\?v=[\w-]+"]
         )
         super().__init__(info)
     
-    # Implement required methods...
+    def validate_url(self, url: str) -> bool:
+        # URL validation logic
+        pass
+    
+    def classify_content(self, url: str) -> ContentType:
+        # Determine if URL is video, playlist, or channel
+        pass
+        
+    def get_output_template(self, config: DownloadConfig, content_type: ContentType) -> str:
+        # Define file naming convention
+        pass
 ```
 
-### **Custom UI Components**
-```python
-from ..ui.base import UIManager
-
-class CustomUIManager(UIManager):
-    # Implement required methods...
-```
+Add your new platform to `platforms/__init__.py` and it will automatically be available.
 
 ## 🚨 Troubleshooting
 
-### **SSL Certificate Errors**
+### **Common Issues and Solutions**
+
+#### **SSL Certificate Errors**
 ```bash
-# Update yt-dlp
+# Update yt-dlp (most common fix)
 pip install --upgrade yt-dlp
 
-# Install certificates (macOS)
+# macOS certificate installation
 /Applications/Python\ 3.x/Install\ Certificates.command
+
+# Manual certificate update
+pip install --upgrade certifi
 ```
 
-### **Missing UI Features**
+#### **Instagram Connection Issues**
+Instagram has strict anti-bot measures. The program includes specific handling:
+- Automatic retries with delays
+- Mobile user agent spoofing  
+- Enhanced timeout settings
+- Helpful error messages with alternatives
+
+**Solutions:**
+- Wait 15-30 minutes and retry
+- Use a VPN or different network
+- Try during off-peak hours
+- Use browser developer tools as alternative
+
+#### **Missing UI Features**
 ```bash
-# Check available features
-media-downloader --show-features
+# Check what's available
+python -m media_downloader --show-features
 
-# Install missing dependencies
+# Install enhanced UI dependencies
 pip install rich art textual
+
+# Verify installation
+python -m media_downloader -i
 ```
 
-### **Permission Errors**
+#### **Permission/Access Errors**
 ```bash
 # Use different output directory
-media-downloader -o ~/Downloads "URL"
+python -m media_downloader -o ~/Downloads "URL"
 
-# Check disk space
+# Check available disk space
 df -h
+
+# Verify write permissions
+ls -la downloads/
 ```
+
+#### **Platform-Specific Issues**
+
+**YouTube:**
+- Age-restricted content requires different handling
+- Some live streams may not be available
+- Private videos cannot be downloaded
+
+**Twitter/X:**
+- Video tweets only (images not supported)
+- Some embedded videos may require special handling
+
+**TikTok:**
+- Watermarks are typically preserved
+- Some regional content may be restricted
+
+## 🔄 Updates and Maintenance
+
+### **Keeping Up-to-Date**
+```bash
+# Update the core download engine
+pip install --upgrade yt-dlp
+
+# Pull latest code changes
+git pull origin main
+
+# Update Python dependencies
+pip install --upgrade rich art textual
+```
+
+### **Performance Tips**
+- Use SSD storage for better performance
+- Ensure stable internet connection
+- Consider using `-q worst` for quick downloads
+- Use audio-only mode for music content
 
 ## 📜 License
 
@@ -211,41 +334,19 @@ MIT License - feel free to use, modify, and distribute!
 
 ## 🙏 Acknowledgments
 
-- **yt-dlp**: Powerful download engine
-- **Rich**: Beautiful terminal output
-- **Textual**: Modern terminal user interfaces  
-- **Art**: ASCII art generation
+- **yt-dlp**: Powerful, actively maintained download engine
+- **Rich**: Beautiful terminal output and progress tracking
+- **Textual**: Modern terminal user interfaces with mouse support
+- **Art**: ASCII art generation for enhanced visual appeal
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ---
 
-### 🌟 **Enjoy downloading with style!** 🌟# Recommended scalable file structure:
-
-media_downloader/
-├── __init__.py
-├── models/
-│   ├── __init__.py
-│   ├── enums.py
-│   ├── config.py
-│   └── platform_info.py
-├── core/
-│   ├── __init__.py
-│   ├── base.py
-│   ├── downloader.py
-│   └── progress.py
-├── platforms/
-│   ├── __init__.py
-│   ├── youtube.py
-│   ├── vimeo.py
-│   ├── twitter.py
-│   ├── tiktok.py
-│   └── instagram.py
-├── ui/
-│   ├── __init__.py
-│   ├── base.py
-│   ├── rich_ui.py
-│   └── basic_ui.py
-├── utils/
-│   ├── __init__.py
-│   └── logging.py
-├── cli.py
-└── __main__.py
+### 🌟 **Enjoy downloading with style!** 🌟
